@@ -1,0 +1,26 @@
+
+cameras:
+  - camera:
+      distortion:
+        parameters:
+          cols: 1
+          rows: 1
+          data: [0.9320]
+        type: fisheye
+      image_height: 720 #480
+      image_width: 1280 #752
+      intrinsics:
+        cols: 1
+        rows: 4
+        data: [639.2645, 639.5627, 635.7686, 355.1494]
+      label: cam
+      line-delay-nanoseconds: 0
+      type: pinhole
+    T_B_C:
+      cols: 4
+      rows: 4
+      data: [ 1, 0, 0, 0,
+                     0, 1, 0, 0,
+                     0, 0, 1, 0,
+                     0, 0, 0, 0]
+label: test_camera

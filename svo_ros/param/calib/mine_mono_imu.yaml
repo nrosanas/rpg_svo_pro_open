@@ -1,0 +1,46 @@
+
+cameras:
+  - camera:
+      distortion:
+        parameters:
+          cols: 1
+          rows: 1
+          data: [0.9320]
+        type: fisheye
+      image_height: 720 #480
+      image_width: 1280 #752
+      intrinsics:
+        cols: 1
+        rows: 4
+        data: [639.2645, 639.5627, 635.7686, 355.1494]
+      label: cam
+      line-delay-nanoseconds: 0
+      type: pinhole
+    T_B_C:
+      cols: 4
+      rows: 4
+      data: [ 1, 0, 0, 0,
+                     0, 1, 0, 0,
+                     0, 0, 1, 0,
+                     0, 0, 0, 0]
+label: test_camera
+imu_params:
+  delay_imu_cam: 0.0
+  max_imu_delta_t: 0.01
+  acc_max: 176.0
+  omega_max: 17
+  sigma_omega_c: 12.0e-4
+  sigma_acc_c: 8.0e-3
+  sigma_omega_bias_c: 0.03
+  sigma_acc_bias_c: 0.1
+  sigma_integration: 0.0
+  g: 9.8082
+  imu_rate: 800
+
+imu_initialization:
+  velocity: [0.0, 0, 0.0]
+  omega_bias: [0.0, 0, 0.0]
+  acc_bias: [0.0, 0.0, 0.0]
+  velocity_sigma: 2.0
+  omega_bias_sigma: 0.01
+  acc_bias_sigma: 0.1

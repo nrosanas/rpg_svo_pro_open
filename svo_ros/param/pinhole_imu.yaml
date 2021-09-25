@@ -92,7 +92,7 @@ seed_convergence_sigma2_thresh: 200
 
 # IMU
 # Normally the prior should be 0 if not using IMU.
-use_imu: False
+use_imu: True
 poseoptim_prior_lambda: 0.0 # Gyroscope prior in pose optimization
 img_align_prior_lambda_rot: 0.0 # Gyroscope prior in sparse image alignment
 img_align_prior_lambda_trans: 0.0 # Constant velocity assumption prior in sparse image alignment
@@ -107,6 +107,7 @@ publish_marker_scale: 0.5
 max_depth_inv: 0.05
 min_depth_inv: 1.0
 mean_depth_inv: 0.3
-
-# Disable ceres backend
+##############################
+##### Backend parameters #####
+##############################
 use_ceres_backend: false
