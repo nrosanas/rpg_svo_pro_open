@@ -4,9 +4,9 @@ cameras:
       distortion:
         parameters:
           cols: 1
-          rows: 1
-          data: [0.9320]
-        type: fisheye
+          rows: 4
+          data: [-0.04087948, 0.03006104, 0, 0]
+        type: radial-tangential
       image_height: 720 #480
       image_width: 1280 #752
       intrinsics:
@@ -20,22 +20,22 @@ cameras:
       cols: 4
       rows: 4
       data: [ 1, 0, 0, 0,
-                     0, 1, 0, 0,
-                     0, 0, 1, 0,
-                     0, 0, 0, 0]
+              0, 1, 0, 0,
+              0, 0, 1, 0,
+              0.0, 0.0, 0.0, 1.0]
 label: test_camera
 imu_params:
   delay_imu_cam: 0.0
   max_imu_delta_t: 0.01
   acc_max: 176.0
   omega_max: 17
-  sigma_omega_c: 12.0e-4
-  sigma_acc_c: 8.0e-3
-  sigma_omega_bias_c: 0.03
-  sigma_acc_bias_c: 0.1
+  sigma_omega_c: 1.6968e-04
+  sigma_acc_c: 2.0000e-3
+  sigma_omega_bias_c: 1.9393e-05
+  sigma_acc_bias_c: 3.0000e-3
   sigma_integration: 0.0
   g: 9.8082
-  imu_rate: 800
+  imu_rate: 100
 
 imu_initialization:
   velocity: [0.0, 0, 0.0]

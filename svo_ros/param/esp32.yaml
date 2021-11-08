@@ -15,8 +15,8 @@ pipeline_is_stereo: False
 # To run faster, you can decrease `max_fts` and `max_n_kfs`, for example:
 # max_fts: 120
 # max_n_kfs: 5
-max_fts: 200 #180
-max_n_kfs: 80 #30
+max_fts: 180
+max_n_kfs: 30
 
 # Map scale when initialized (not used for stereo)
 # Increase if the initial scene depth is larger
@@ -29,7 +29,7 @@ T_world_imuinit/qz: 0
 T_world_imuinit/qw: 1
 
 # Keyframe selection
-kfselect_criterion: FORWARD    # alterntive: DOWNLOOKING
+kfselect_criterion:  FORWARD    # alterntive: DOWNLOOKING
 # The following kfselect_* ONLY affects FORWARD
 # If the number of features: >upper, no keyframe; <lower, take keyframe
 kfselect_numkfs_upper_thresh: 120
@@ -64,34 +64,35 @@ reprojector_affine_est_gain: true
 ########################################
 # Initialization
 # For a higher resolution, increase the value accordingly.
-init_min_disparity: 60
+init_min_disparity: 30
 
 # Feature Detection
 grid_size: 40 # Larger for larger images, for every cell you have max one feature.
-n_pyr_levels:  5 # Increase for larger images (image align max minus one)
+n_pyr_levels:  4 # Increase for larger images (image align max minus one)
 detector_threshold_primary: 10 # Fast detector threshold
 detector_threshold_secondary: 200 # Edgelet detector threshold
 
 # Image Alignment
-img_align_max_level: 6 # Increase this level by one if the image is double the width and height (752x480).
-img_align_min_level: 3
+img_align_max_level: 5 # Increase this level by one if the image is double the width and height (752x480).
+img_align_min_level: 2
 
 # Reprojection
 use_async_reprojectors: False # For stereo, change it to True for multithreading.
-reprojector_max_n_kfs: 20 #5 # Local map size. Larger is computationally more intensive. More reduces drift.
+reprojector_max_n_kfs: 6 # Local map size. Larger is computationally more intensive. More reduces drift.
 scan_epi_unit_sphere: False # for wide angle lens, set it to True.
 
 # Pose Optimization
-poseoptim_thresh: 5.0 #2.0 # Reprojection outlier threshold (px), should be larger for larger images.
+poseoptim_thresh: 5.0 # Reprojection outlier threshold (px), should be larger for larger images.
 poseoptim_using_unit_sphere: False # For wide angle lens, set it to True
 
 # Depth Filter
 # How many times does the covariance need to decrease until a seed is considered converged.
 # Increase to get more accurate points
-seed_convergence_sigma2_thresh: 500
+seed_convergence_sigma2_thresh: 200
+
 # IMU
 # Normally the prior should be 0 if not using IMU.
-use_imu: True
+use_imu: False
 poseoptim_prior_lambda: 0.0 # Gyroscope prior in pose optimization
 img_align_prior_lambda_rot: 0.0 # Gyroscope prior in sparse image alignment
 img_align_prior_lambda_trans: 0.0 # Constant velocity assumption prior in sparse image alignment
@@ -106,7 +107,6 @@ publish_marker_scale: 0.5
 max_depth_inv: 0.05
 min_depth_inv: 1.0
 mean_depth_inv: 0.3
-##############################
-##### Backend parameters #####
-##############################
+
+# Disable ceres backend
 use_ceres_backend: false
