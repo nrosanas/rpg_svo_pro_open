@@ -29,20 +29,20 @@ T_world_imuinit/qz: 0
 T_world_imuinit/qw: 1
 
 # Keyframe selection
-kfselect_criterion: FORWARD    # alterntive: DOWNLOOKING
+kfselect_criterion:  FORWARD    # alterntive: DOWNLOOKING
 # The following kfselect_* ONLY affects FORWARD
 # If the number of features: >upper, no keyframe; <lower, take keyframe
 kfselect_numkfs_upper_thresh: 120
-kfselect_numkfs_lower_thresh: 70
+kfselect_numkfs_lower_thresh: 40
 # If the current frame is within the following range of any visible keyframes,
 # do not take a new keyframe.
 # You can lower these values for more keyframes
 kfselect_min_dist_metric: 0.1
-kfselect_min_angle: 20
+kfselect_min_angle: 10
 # If the median disparity from the last keyframe is smaller,
 # do not take a new keyframe
 # You can lower this value for more keyframes
-kfselect_min_disparity: 20
+kfselect_min_disparity: 10
 # When taking a new keyframe,
 # we can already update the newly initialized seeds with old keyframes.
 # This is important for forward looking case.
@@ -64,12 +64,12 @@ reprojector_affine_est_gain: false
 ########################################
 # Initialization
 # For a higher resolution, increase the value accordingly.
-init_min_disparity: 30
+init_min_disparity: 15
 
 # Feature Detection
-grid_size: 30 # Larger for larger images, for every cell you have max one feature.
-n_pyr_levels: 3 # Increase for larger images (image align max minus one)
-detector_threshold_primary: 10 # Fast detector threshold
+grid_size: 25 # Larger for larger images, for every cell you have max one feature.
+n_pyr_levels:  3 # Increase for larger images (image align max minus one)
+detector_threshold_primary: 5 # Fast detector threshold
 detector_threshold_secondary: 200 # Edgelet detector threshold
 
 # Image Alignment
@@ -110,3 +110,10 @@ mean_depth_inv: 0.3
 
 # Disable ceres backend
 use_ceres_backend: false
+
+# If set to false, we process the next frame(s) only when the depth update is finished
+use_threaded_depthfilter: False
+# If the number of features are below this number, consider as failure
+quality_min_fts: 40
+# If the number of features reduce by this number for consecutive frames, consider as failure
+quality_max_drop_fts: 80
