@@ -42,7 +42,7 @@ kfselect_min_angle: 20
 # If the median disparity from the last keyframe is smaller,
 # do not take a new keyframe
 # You can lower this value for more keyframes
-kfselect_min_disparity: 40
+kfselect_min_disparity: 20
 # When taking a new keyframe,
 # we can already update the newly initialized seeds with old keyframes.
 # This is important for forward looking case.
