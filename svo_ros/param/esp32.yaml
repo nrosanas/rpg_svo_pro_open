@@ -7,7 +7,8 @@
 ############################
 ##### Basic parameters #####
 ############################
-
+# Automatic initialisation
+automatic_reinitialization: True
 # Pipeline type
 pipeline_is_stereo: False
 
@@ -15,12 +16,17 @@ pipeline_is_stereo: False
 # To run faster, you can decrease `max_fts` and `max_n_kfs`, for example:
 # max_fts: 120
 # max_n_kfs: 5
-max_fts: 180
-max_n_kfs: 30
+# max_fts: 120
+# max_n_kfs: 10
+max_fts: 250
+max_map_fts: 300
+# max_fts: 220
+max_n_kfs: 60
+quality_min_fts: 40
 
 # Map scale when initialized (not used for stereo)
 # Increase if the initial scene depth is larger
-map_scale: 1.0
+map_scale: 8.0
 
 # Initial rotation
 T_world_imuinit/qx: 0
@@ -33,16 +39,16 @@ kfselect_criterion:  FORWARD    # alterntive: DOWNLOOKING
 # The following kfselect_* ONLY affects FORWARD
 # If the number of features: >upper, no keyframe; <lower, take keyframe
 kfselect_numkfs_upper_thresh: 120
-kfselect_numkfs_lower_thresh: 40
+kfselect_numkfs_lower_thresh: 70
 # If the current frame is within the following range of any visible keyframes,
 # do not take a new keyframe.
 # You can lower these values for more keyframes
 kfselect_min_dist_metric: 0.1
-kfselect_min_angle: 10
+kfselect_min_angle: 20
 # If the median disparity from the last keyframe is smaller,
 # do not take a new keyframe
 # You can lower this value for more keyframes
-kfselect_min_disparity: 10
+kfselect_min_disparity: 20
 # When taking a new keyframe,
 # we can already update the newly initialized seeds with old keyframes.
 # This is important for forward looking case.
@@ -52,8 +58,8 @@ update_seeds_with_old_keyframes: True
 # Most of the parameters are set to false for the consideration of processing time.
 # If you observe bad tracking because of light/expousre change,
 # enable the following parameters.
-img_align_est_illumination_gain: false
-img_align_est_illumination_offset: false
+img_align_est_illumination_gain: true
+img_align_est_illumination_offset: true
 depth_filter_affine_est_offset: true
 depth_filter_affine_est_gain: false
 reprojector_affine_est_offset: true
@@ -67,7 +73,7 @@ reprojector_affine_est_gain: false
 init_min_disparity: 15
 
 # Feature Detection
-grid_size: 25 # Larger for larger images, for every cell you have max one feature.
+grid_size: 20 # Larger for larger images, for every cell you have max one feature.
 n_pyr_levels:  3 # Increase for larger images (image align max minus one)
 detector_threshold_primary: 5 # Fast detector threshold
 detector_threshold_secondary: 200 # Edgelet detector threshold
@@ -114,6 +120,5 @@ use_ceres_backend: false
 # If set to false, we process the next frame(s) only when the depth update is finished
 use_threaded_depthfilter: False
 # If the number of features are below this number, consider as failure
-quality_min_fts: 40
 # If the number of features reduce by this number for consecutive frames, consider as failure
 quality_max_drop_fts: 80
